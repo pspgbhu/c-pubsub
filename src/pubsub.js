@@ -49,6 +49,7 @@ const proxy = {
       }
       this.oneObj[key] = [];
     }
+    return true;
   },
 };
 
