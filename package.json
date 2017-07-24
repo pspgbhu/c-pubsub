@@ -1,0 +1,22 @@
+{
+  "name": "c-pubsub",
+  "version": "0.1.0",
+  "description": "simple publish/subscribe mode",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pspgbhu/c-pubsub.git"
+  },
+  "keywords": [
+    "c-pubsub"
+  ],
+  "author": "pspgbhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pspgbhu/c-pubsub/issues"
+  },
+  "homepage": "https://github.com/pspgbhu/c-pubsub#readme"
+}
