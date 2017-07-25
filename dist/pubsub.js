@@ -10,7 +10,7 @@
  * @Reference http://taobaofed.org/blog/2016/11/17/react-components-communication/
  */
 
-const proxy = {
+const pubsub = {
   onObj: {},
   oneObj: {},
 
@@ -33,7 +33,7 @@ const proxy = {
     this.oneObj[key] = [];
   },
 
-  trigger() {
+  emit() {
     let key;
     let args;
     if (arguments.length === 0) {
@@ -59,6 +59,6 @@ const proxy = {
   },
 };
 
-return proxy;
+return pubsub;
 
 })));
