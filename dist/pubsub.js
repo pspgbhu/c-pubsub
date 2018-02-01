@@ -6,7 +6,7 @@
 
 /**
  * @author pspgbhu <brotherchun001@gmail.com>
- * 
+ *
  * @Reference http://taobaofed.org/blog/2016/11/17/react-components-communication/
  */
 
@@ -26,9 +26,28 @@ var pubsub = {
     }
     this.oneObj[key].push(fn);
   },
-  off: function off(key) {
+  offAll: function offAll(key) {
     this.onObj[key] = [];
     this.oneObj[key] = [];
+  },
+  off: function off(key, fn) {
+    if (typeof fn !== 'function') {
+      throw Error('pubsub.off only accept a function as the second parameter.');
+    }
+
+    for (var i = 0; i < this.onObj.length; i += 1) {
+      var ifn = this.onObj[i];
+      if (fn === ifn) {
+        this.onObj.splice(i, 1);
+      }
+    }
+
+    for (var _i = 0; _i < this.oneObj.length; _i += 1) {
+      var _ifn = this.oneObj[_i];
+      if (fn === _ifn) {
+        this.oneObj.splice(_i, 1);
+      }
+    }
   },
   emit: function emit() {
     var key = void 0;
@@ -46,9 +65,9 @@ var pubsub = {
     }
 
     if (this.oneObj[key] !== undefined && this.oneObj[key].length > 0) {
-      for (var _i in this.oneObj[key]) {
-        this.oneObj[key][_i].apply(null, args);
-        this.oneObj[key][_i] = undefined;
+      for (var _i2 in this.oneObj[key]) {
+        this.oneObj[key][_i2].apply(null, args);
+        this.oneObj[key][_i2] = undefined;
       }
       this.oneObj[key] = [];
     }
