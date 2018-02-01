@@ -1,6 +1,6 @@
 /**
  * @author pspgbhu <brotherchun001@gmail.com>
- * 
+ *
  * @Reference http://taobaofed.org/blog/2016/11/17/react-components-communication/
  */
 
@@ -22,9 +22,29 @@ const pubsub = {
     this.oneObj[key].push(fn);
   },
 
-  off(key) {
+  offAll(key) {
     this.onObj[key] = [];
     this.oneObj[key] = [];
+  },
+
+  off(key, fn) {
+    if (typeof fn !== 'function') {
+      throw Error('pubsub.off only accept a function as the second parameter.');
+    }
+
+    for (let i = 0; i < this.onObj.length; i += 1) {
+      const ifn = this.onObj[i];
+      if (fn === ifn) {
+        this.onObj.splice(i, 1);
+      }
+    }
+
+    for (let i = 0; i < this.oneObj.length; i += 1) {
+      const ifn = this.oneObj[i];
+      if (fn === ifn) {
+        this.oneObj.splice(i, 1);
+      }
+    }
   },
 
   emit() {
